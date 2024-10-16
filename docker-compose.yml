@@ -14,23 +14,11 @@
 version: '2.4'
 
 services:
-  # The zipkin process services the UI, and also exposes a POST endpoint that
-  # instrumentation can send trace data to.
-#  zipkin:
-#    image: openzipkin/zipkin:latest
-#    container_name: zipkin
-#    # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
-#    environment:
-#      - STORAGE_TYPE=mem
-#      # Uncomment to enable self-tracing
-#      # - SELF_TRACING_ENABLED=true
-#      # Uncomment to increase heap size
-#      # - JAVA_OPTS=-Xms128m -Xmx128m -XX:+ExitOnOutOfMemoryError
-#    ports:
-#      # Port used for the Zipkin UI and HTTP Api
-#      - 9411:9411
-    # Uncomment to enable debug logging
-    # command: --logging.level.zipkin2=DEBUG
+  chroma:
+    image: ghcr.io/chroma-core/chroma:0.4.15
+    container_name: chroma
+    ports:
+      - 8000:8000
   jaeger:
     image: jaegertracing/all-in-one:latest
     container_name: jaeger
